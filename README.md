@@ -62,10 +62,20 @@ export default {
 </script>
 ```
 
-#### LineGraph
-data: Array<Array<number>>
-strokeWidth: number - width of the line (default: 2)
-smoothness: number - ratio to smooth path's control points with (default: 0.2)
-color: string - color of the line (default: black)
-bg-color: string - color of the fill (default: black)
-bg-type: string - type of the fill (gradient|solid|transparent - default: gradient)
+### LineGraph
+#### data - number[][]
+
+#### strokeWidth - number
+Width of the line (default: 2)
+
+#### smoothness - number
+  Ratio to smooth path's control points with (default: 0.2)
+  
+#### color - string
+  Color of the line (default: 'black')
+
+#### bg-color - string
+  Color of the fill (default: 'black')
+  
+#### bg-type - string
+  Type of the fill (default: 'gradient', possible values: 'gradient', 'solid', 'transparent')
