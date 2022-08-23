@@ -43,6 +43,16 @@ export default Vue.extend({
     <div style="width: 200px; height: 80px; color: blue;">
       <LineGraph
         :data="data"
+        :stroke-width="2"
+        :smoothness="0.2"
+      />
+    </div>
+    <div style="width: 200px; height: 80px; color: blue;">
+      <LineGraph
+        :data="data"
+        :bg-color="'red'"
+        :bg-type="'transparent'"
+        :color="'red'"
         :stroke-width="4"
         :smoothness="0.2"
       />

@@ -7,7 +7,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <linearGradient :id="id" x1="0%" y1="0%" x2="0%" y2="100%">
         <stop offset="0%" :style="`stop-color: ${bgColor}; stop-opacity: 1`" />
         <stop
           offset="100%"
@@ -17,9 +17,9 @@
     </defs>
     <path
       :d="`${path} L ${width} ${height},L 0 ${height}Z`"
-      fill="url(#bg-gradient)"
+      :fill="background"
     />
-    <path :d="path" stroke="currentColor" :stroke-width="strokeWidth" fill="none" />
+    <path :d="path" :stroke="color" :stroke-width="strokeWidth" fill="none" />
     <g>
       <circle
         v-for="(p, i) in data"
@@ -43,9 +43,19 @@ export default Vue.extend({
       default: false,
     },
 
+    color: {
+      type: String,
+      default: 'black',
+    },
+
     bgColor: {
       type: String,
-      default: 'transparent',
+      default: 'black',
+    },
+
+    bgType: {
+      type: String,
+      default: 'gradient'
     },
 
     data: {
@@ -60,7 +70,7 @@ export default Vue.extend({
 
     strokeWidth: {
       type: Number,
-      default: 5,
+      default: 2,
     },
 
     circleRadius: {
@@ -90,6 +100,7 @@ export default Vue.extend({
 
   data() {
     return {
+      id: Math.random(),
       width: 0,
       height: 0,
       observedElement: undefined as unknown as HTMLElement | null,
@@ -119,6 +130,17 @@ export default Vue.extend({
         ""
       );
     },
+
+    background(): string {
+      const { bgType, bgColor, id } = this
+
+      switch(bgType) {
+        case 'gradient': return `url(#${id})`
+        case 'solid': return bgColor
+        case 'transparent': return 'transparent'
+        default: return ''
+      }
+    }
   },
 
   methods: {

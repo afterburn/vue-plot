@@ -12,12 +12,14 @@ $ npm install vue-plot --save
 ## Usage
 ```vue
 <template>
-  <div style="width: 200px; height: 80px; color: red">
+  <div style="width: 200px; height: 80px;">
     <LineGraph
-        :data="data"
-        :stroke-width="1"
-        :smoothness="0.2"
-        :bg-color="'red'"
+      :data="data"
+      :stroke-width="1"
+      :smoothness="0.2"
+      :color="'red'"
+      :bg-color="'red'"
+      :bg-type="'gradient'"
     />
   </div>
 </template>
@@ -59,3 +61,11 @@ export default {
 }
 </script>
 ```
+
+#### LineGraph
+data: Array<Array<number>>
+strokeWidth: number - width of the line (default: 2)
+smoothness: number - ratio to smooth path's control points with (default: 0.2)
+color: string - color of the line (default: black)
+bg-color: string - color of the fill (default: black)
+bg-type: string - type of the fill (gradient|solid|transparent - default: gradient)
