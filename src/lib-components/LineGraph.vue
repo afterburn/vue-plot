@@ -112,13 +112,21 @@ export default Vue.extend({
     path(): string {
       const { data, width, height } = this;
 
-      // Normalize data
+      if (!width || !height) {
+        return 'M 0,0'
+      }
+
+      // Gather some info about dataset.
       const maxX = Math.max(...data.map((p: any) => p[0]));
+      const minX = Math.min(...data.map((p: any) => p[0]));
       const maxY = Math.max(...data.map((p: any) => p[1]));
-      const ratioX = maxX / width;
-      const ratioY = maxY / height;
+      const minY =  Math.min(...data.map((p: any) => p[1]));
+
+      // Normalize data
       const normalizedData = data.map((p: any) => {
-        return [this.normalize(p[0], ratioX), this.normalize(p[1], ratioY)];
+        const x = this.normalize(p[0], minX, maxX, 0, width)
+        const y = this.normalize(p[1], minY, maxY, 0, height)
+        return [x, y]
       });
 
       // Create the path
@@ -144,8 +152,8 @@ export default Vue.extend({
   },
 
   methods: {
-    normalize(v: number, ratio: number) {
-      return v / ratio;
+    normalize(val: number, valmin: number, valmax: number, min: number, max: number) {
+      return (((val - valmin) / (valmax - valmin)) * (max - min)) + min;
     },
 
     curve(point: number[], i: number, a: number[][]) {
