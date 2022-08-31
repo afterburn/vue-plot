@@ -1,6 +1,12 @@
 # vue-plot
 A collection of Vue 2 components to display various kinds of graphs/plots.
 
+
+![](https://img.shields.io/npm/dt/vue-plot)
+![](https://img.shields.io/github/license/afterburn/vue-plot?color=3EB810)
+![](https://img.shields.io/bundlephobia/min/vue-plot?color=3EB810)
+![](https://img.shields.io/npm/v/vue-plot?color=3EB810)
+
 [Demo](https://codesandbox.io/s/vue-plot-qhye3v?file=/src/App.vue)
 
 ## Installation
